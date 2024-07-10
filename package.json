@@ -10,6 +10,7 @@
     "@mui/material": "^5.16.0",
     "@react-map/ukraine": "^1.0.4",
     "@react-map/world": "^1.0.4",
+    "@react-spring/web": "^9.7.3",
     "@svg-maps/ukraine": "^1.0.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -21,6 +22,10 @@
     "axios": "^1.7.2",
     "carousel": "^0.0.3",
     "react": "^18.3.1",
+<<<<<<< HEAD
+    "react-animations": "^1.0.0",
+=======
+>>>>>>> 74ba767ffdbbb3a18db5f44782d5e2465286202e
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
