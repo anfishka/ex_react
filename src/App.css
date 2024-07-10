@@ -1,16 +1,6 @@
-.MuiContainer-root{
-background: #000;
 
 
-}
+.app{
+    width: 100px;
 
-.MuiCard-root{
-width: 150px;
-display: inline-block;
-gap: 100px;}
-
-#root{
-    background: rgba(0, 0, 0, 0.555);
- width: 100%;
-    min-height: 3000px;
 }
