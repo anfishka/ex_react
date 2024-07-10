@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Card, Container, createTheme } from '@mui/material';
+import { Card, Container, FormControlLabel, Switch, createTheme } from '@mui/material';
 import styled from '@emotion/styled';
-import Menu from './components/menu/menu';
+
 import Carousel from './components/carousel/Carousel';
+import MenuCustom from './components/menu/MenuCustom';
+import car_animation1 from './components/img/car1.png'
+
+import { useSpring, animated } from "@react-spring/web";
+
 
 const Button = styled.button`
 background:red;`
@@ -42,11 +47,44 @@ let api_key = '6adb8dac3bcd1e82b8f138233342b2b1'
 let url = `https://baza-gai.com.ua/make/lamborghini/huracan`;
 
 function App() {
+   const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
+
+
   
+   const springs = useSpring({
+    from: { x: 0 },
+     /* to: { x: 4000 }*/
+        to: { x: checked ? 4000 : 0 }
+  });
+
+
   return (
     <div className="image-slider-container">
+   <MenuCustom/>
+      <Carousel />
+      
+
+
+ 
+  
+    <FormControlLabel
+        control={<Switch checked={checked} onChange={handleChange} />}
+        label="Show"
+      />
+      <animated.img
+        src={car_animation1}
+        style={{
+          width: 100,
+        
+          ...springs
+        }}
+      />
+
    
-   <Carousel/>
     </div>
     
     /*
