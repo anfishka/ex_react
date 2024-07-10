@@ -6,12 +6,9 @@ import './Carousel.css';
 import img from './pexels-pixabay-210019.jpg'
 
 import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import Map from "../map/Map";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -74,82 +71,30 @@ const Carousel = () => {
         
       
         <Slider {...settings}>
-       
-          <Card>
-            <CardMedia
-            component='img'
-            height='300'
-            image={img}
-            />
-      
-            <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Введите марку или модель авто"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-           
-           </Card>
+        {[1, 2, 3, 4].map((index) => (
+          <Card key={index}>
+            {index === 4 ? (
+              
+             <Map/>
+            ) : (
+              <CardMedia
+              component='img'
+              height='300'
+              image={img}
+              />
         
-           <Card>
-            <CardMedia
-            component='img'
-            height='300'
-            image={img}
-            />
-      
+            )}
             <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Введите номерной знак авто"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-           
-           </Card>
-       
-           <Card>
-            <CardMedia
-            component='img'
-            height='300'
-            image={img}
-            />
-      
-            <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Введите VIN авто"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-           
-           </Card>
-           <Card>
-            <CardMedia
-            component='img'
-            height='300'
-            image={img}
-            />
-      
-            <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Выберите регион для поиска авто"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-           
-           </Card>
-        
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder={` ${index === 1 ? "Введите марку или модель авто" : index === 2 ? "Введите номерной знак авто" : index === 3 ? "Введите VIN авто" : ""}`}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+          </Card>
+        ))}
       </Slider>
       </div>
     )
