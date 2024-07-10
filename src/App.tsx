@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { Card, Container, createTheme } from '@mui/material';
 import styled from '@emotion/styled';
+import Menu from './components/menu/menu';
+import Carousel from './components/carousel/Carousel';
 
 const Button = styled.button`
 background:red;`
@@ -42,9 +44,10 @@ let url = `https://baza-gai.com.ua/make/lamborghini/huracan`;
 function App() {
   
   return (
-    <>
-    <Button>click me</Button>
-    </>
+    <div className="image-slider-container">
+   
+   <Carousel/>
+    </div>
     
     /*
     <div className="App">
