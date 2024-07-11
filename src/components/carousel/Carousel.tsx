@@ -9,13 +9,15 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Map from "../map/Map";
+import { useState } from "react";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
+    background:'#fff',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),background:'#fff'
     },
     marginLeft: 0,
     width: '100%',
@@ -33,6 +35,7 @@ const Search = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    background:'#fff'
   }));
   
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -61,27 +64,35 @@ const Carousel = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-       
+      }; 
 
+    const [inputValue, setInputValue] = useState('');
 
-    
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        // Здесь можно добавить логику для анимации, если необходимо
+        console.log('Enter key pressed!');
+      }
     };
+    
     return(
         <div className="image-slider-container">
         
       
         <Slider {...settings}>
         {[1, 2, 3, 4].map((index) => (
-          <Card key={index}>
+          <div key={index}>
             {index === 4 ? (
               
              <Map/>
             ) : (
-              <CardMedia
-              component='img'
-              height='300'
-              image={img}
-              />
+              <img 
+              alt='car'
+              width='100%'
+              height='400'
+              style={{ objectFit: 'cover' }}
+              src={img}
+            />
         
             )}
             <Search>
@@ -89,11 +100,14 @@ const Carousel = () => {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder={` ${index === 1 ? "Введите марку или модель авто" : index === 2 ? "Введите номерной знак авто" : index === 3 ? "Введите VIN авто" : ""}`}
+                placeholder="Введите марку или модель авто"
                 inputProps={{ 'aria-label': 'search' }}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyPress} // Добавляем обработчик нажатия клавиши
               />
             </Search>
-          </Card>
+          </div>
         ))}
       </Slider>
       </div>

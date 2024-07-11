@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,22 +18,6 @@ import './Menu.css'
 import iconCompare from '../img/compare.png'
 
 interface menuProps {}
-/*
-const menu: FC<menuProps> = () => (
-  <div>
-    menu Component
-  </div>
-);
-*/
-
-/*
-const Menu = styled.div`
-display:flex;
-background:blue;
-`
-*/
-
-
 
 const pages = ['Поиск по номеру','Поиск по марке', 'Поиск по VIN', 'Поиск по региону', 'Поиск по цене'];
 
@@ -41,7 +25,7 @@ const pages = ['Поиск по номеру','Поиск по марке', 'П�
 function MenuCustom() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
+  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,8 +41,9 @@ function MenuCustom() {
     setAnchorElUser(null);
   };
 
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{width:'100%'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img className="logo_img" src={logo} />
@@ -116,7 +101,7 @@ function MenuCustom() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          
           <Typography
             variant="h5"
             noWrap

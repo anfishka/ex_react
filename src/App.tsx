@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-import logo from './logo.svg';
+
+import React, { useEffect } from 'react';
 import './App.css';
 import { Card, Container, FormControlLabel, Switch, createTheme } from '@mui/material';
 import styled from '@emotion/styled';
@@ -8,65 +7,63 @@ import styled from '@emotion/styled';
 import Carousel from './components/carousel/Carousel';
 import MenuCustom from './components/menu/MenuCustom';
 import car_animation1 from './components/img/car1.png'
-
+import car_animation2 from './components/img/car3.png'
 import { useSpring, animated } from "@react-spring/web";
-
-=======
-import styled from "@emotion/styled";
-import Carousel from "./components/carousel/Carousel";
-import '../src/App.css'
->>>>>>> 74ba767ffdbbb3a18db5f44782d5e2465286202e
 
 const Button = styled.button`
   background: red;
 `;
-
 function App() {
-<<<<<<< HEAD
-   const [checked, setChecked] = React.useState(false);
+  const [springs1, setSprings1] = useSpring(() => ({
+    from: { transform: 'translateX(0px)' },
+    to: { transform: 'translateX(0px)' },
+    config: { mass: 1, tension: 180, friction: 70 },
+  }));
 
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
+  const [springs2, setSprings2] = useSpring(() => ({
+    from: { transform: 'translateX(2000px)' },
+    to: { transform: 'translateX(2000px)' },
+    config: { mass: 1, tension: 180, friction: 70 },
+  }));
 
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        setSprings1({ to: { transform: 'translateX(2000px)' } });
+        setSprings2({ to: { transform: 'translateX(0px)' } });
+      }
+    };
 
-  
-   const springs = useSpring({
-    from: { x: 0 },
-     /* to: { x: 4000 }*/
-        to: { x: checked ? 4000 : 0 }
-  });
+    document.addEventListener('keydown', handleKeyPress);
 
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [setSprings1, setSprings2]);
 
   return (
     <div className="image-slider-container">
-   <MenuCustom/>
-      <Carousel />
-      
+      <MenuCustom />
 
-
- 
-  
-    <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
-        label="Show"
-      />
       <animated.img
         src={car_animation1}
+        alt="Car Animation 1"
         style={{
           width: 100,
-        
-          ...springs
+          ...springs1,
         }}
       />
 
-   
-=======
-  return (
-    <div className="app">
-      <Button>click me</Button>
-      <Carousel/>
->>>>>>> 74ba767ffdbbb3a18db5f44782d5e2465286202e
+      <Carousel />
+
+      <animated.img
+        src={car_animation2}
+        alt="Car Animation 2"
+        style={{
+          width: 100,
+          ...springs2,
+        }}
+      />
     </div>
   );
 }

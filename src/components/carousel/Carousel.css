@@ -1,10 +1,16 @@
 .image-slider-container {
-    margin: 0 auto;
-    width: 500px;
+ 
+ 
   }
   
   .image-slider-container .slick-prev:before,
   .image-slider-container .slick-next:before {
-    color: black;
+  
   }
   
+  .slick-list{
+    height: 500px;
+  }
+  .slick-track{
+    height: 500px;
+  }
